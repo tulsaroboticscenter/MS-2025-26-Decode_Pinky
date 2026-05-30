@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Hardware;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -165,14 +166,14 @@ public class HWProfile2 {
         }
 
         motorShooter = ahwMap.get(DcMotorEx.class, "motorShooter");
-        motorShooter.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.FORWARD);
         motorShooter.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooter.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         motorShooter.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//big shooter (210, 0.0, 0.0, 14.3)
         motorShooter.setPower(0);
 
         motorShooterTop = ahwMap.get(DcMotorEx.class, "motorShooterTop");
-        motorShooterTop.setDirection(DcMotor.Direction.FORWARD);
+        motorShooterTop.setDirection(DcMotor.Direction.REVERSE);
         motorShooterTop.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooterTop.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         motorShooterTop.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//(800, 0.0, 0.0, 1490))
@@ -187,7 +188,7 @@ public class HWProfile2 {
 //        motorIntake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         motorFeeder = ahwMap.get(DcMotorEx.class, "motorFeeder");
-        motorFeeder.setDirection(DcMotor.Direction.FORWARD);
+        motorFeeder.setDirection(DcMotor.Direction.REVERSE);
         motorFeeder.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorFeeder.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 //        motorFeeder.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -196,7 +197,7 @@ public class HWProfile2 {
         pinpoint = ahwMap.get(GoBildaPinpointDriver.class,"pinpoint");
 //      pinpoint.resetPosAndIMU();
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
-        pinpoint.setOffsets(-2,0, DistanceUnit.INCH);
+        pinpoint.setOffsets(-3.75,-3.15, DistanceUnit.INCH);
         pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
 
         /**

@@ -55,8 +55,8 @@ public class Constants {
 
 
     public static PinpointConstants localizerConstants = new PinpointConstants()
-            .forwardPodY(-2)        // this needs to be updated by measuring position on the bot
-            .strafePodX(0)        // this needs to be updated by measuring position on the bot
+            .forwardPodY(-3.74)        // this needs to be updated by measuring position on the bot
+            .strafePodX(-3.15)        // this needs to be updated by measuring position on the bot
             .distanceUnit(DistanceUnit.INCH)
             .hardwareMapName("pinpoint")
             .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
