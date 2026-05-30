@@ -3,12 +3,16 @@ package org.firstinspires.ftc.teamcode.Hardware;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class HWProfile2 {
 
@@ -63,10 +67,21 @@ public class HWProfile2 {
     public DcMotorEx motorShooterTop = null;
     public DcMotorEx motorIntake;
     public DcMotorEx motorFeeder;
-
+//ArtSensor
     public Servo servoFLIPPER;
+    public Servo servoLIFT;
+    public Servo servoHOOD1;
+    public Servo servoHOOD2;
+    public Servo servoRPMLight;
+    //public DistanceSensor ArtSensor;
+    //public DistanceSensor AftSensor;
+    public DigitalChannel LredLED;
+    public DigitalChannel LgreenLED;
+    public DigitalChannel RredLED;
+    public DigitalChannel RgreenLED;
 
     public GoBildaPinpointDriver pinpoint; // Declare OpMode member for the Odometry Computer
+
 
     HardwareMap hwMap;
 
@@ -77,6 +92,13 @@ public class HWProfile2 {
     /* Constructor */
     public HWProfile2() {
     }
+
+    //private DistanceSensor ArtSensor;
+
+
+
+
+
 
     public void init(HardwareMap ahwMap, boolean teleop) {
 
@@ -146,12 +168,14 @@ public class HWProfile2 {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooter.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        motorShooter.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//big shooter (210, 0.0, 0.0, 14.3)
         motorShooter.setPower(0);
 
         motorShooterTop = ahwMap.get(DcMotorEx.class, "motorShooterTop");
         motorShooterTop.setDirection(DcMotor.Direction.FORWARD);
         motorShooterTop.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooterTop.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        motorShooterTop.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//(800, 0.0, 0.0, 1490))
         motorShooterTop.setPower(0);
         //motorShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -170,12 +194,28 @@ public class HWProfile2 {
         motorFeeder.setPower(0);
 
         pinpoint = ahwMap.get(GoBildaPinpointDriver.class,"pinpoint");
-        pinpoint.resetPosAndIMU();
+//      pinpoint.resetPosAndIMU();
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+        pinpoint.setOffsets(-2,0, DistanceUnit.INCH);
+        pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
+
         /**
          * Initialize Servos
          **/
         servoFLIPPER = ahwMap.servo.get("servoFLIPPER");
+        servoLIFT = ahwMap.servo.get("servoLIFT");
+        servoRPMLight = ahwMap.servo.get("servoRPMLight");
+        servoHOOD1 =ahwMap.servo.get("servoHOOD1");
+        servoHOOD2 =ahwMap.servo.get("servoHOOD2");
+
+        //ArtSensor = ahwMap.get(DistanceSensor.class,"ArtSensor");
+        //AftSensor = ahwMap.get(DistanceSensor.class,"AftSensor");
+
+        LredLED = ahwMap.get(DigitalChannel.class, "Lred");
+        LgreenLED = ahwMap.get(DigitalChannel.class, "Lgreen");
+
+        RredLED = ahwMap.get(DigitalChannel.class, "Rred");
+        RgreenLED = ahwMap.get(DigitalChannel.class, "Rgreen");
 
         // Zeroing Servos
         //servoIntake.setPower(0.5);

@@ -1,23 +1,12 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.SECONDS;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.SECONDS;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Hardware.HWProfile2;
 import org.firstinspires.ftc.teamcode.Hardware.MSParams;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.Hardware.MSParams;
+import java.util.Timer;
 
 public class MSMechOps {
 
@@ -39,31 +28,40 @@ public class MSMechOps {
 
     /**
      * Method shooterControl()
+     *
      * @param targetRPM
      */
-    public void shooterControl(double targetRPM){
-        robot.motorShooter.setVelocity(rpmToTicksPerSecond(targetRPM));
-        robot.motorShooterTop.setVelocity(rpmToTicksPerSecond(targetRPM));
+    public void shooterControl(double targetRPM) {
+        robot.motorShooter.setVelocity((targetRPM));
+        robot.motorShooterTop.setVelocity((targetRPM));
     }   // end of method shooterControl
 
     /**
      * method rpmToTicksPerSecond
+     *
      * @param targetRPM
      */
-    private double rpmToTicksPerSecond(double targetRPM){
+    private double rpmToTicksPerSecond(double targetRPM) {
         return (targetRPM * 28 / 60);
     }   // end of method rpmToTicksPerSecond
 
-    public void feedShooter(double feederRPM){
-        robot.motorFeeder.setVelocity(rpmToTicksPerSecond(feederRPM));
+    public void feedShooter(double feederVel) {
+            robot.motorFeeder.setPower(feederVel);
+    }
+
+    public void trigger(double trigVel, double trigPulse) {
+
 
     }
-    public void intake(double intakePower){
+
+    public void intake(double intakePower) {
         robot.motorIntake.setPower(intakePower);
     }
 
-
-
+    public void hoodAngle(double hoodAngle){
+        robot.servoHOOD1.setPosition(hoodAngle);
+        robot.servoHOOD2.setPosition(1-hoodAngle);
+    }
 
 }
 
