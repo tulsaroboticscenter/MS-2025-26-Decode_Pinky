@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 
@@ -11,7 +12,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 public class FlywheelTuner extends OpMode {
     public DcMotorEx motorShooter;
     public DcMotorEx motorShooterTop;
-    public double highVel = 1900;
+    public double highVel = 1600;
     public double lowVel = 1300;
     double curTargetVel = highVel;
     double[] stepsizes = {10,1,0.1,.001,.0001};
@@ -29,13 +30,13 @@ public class FlywheelTuner extends OpMode {
         PIDFCoefficients pidfCoefficients = new PIDFCoefficients(P,0,0,F);
 
         motorShooter = hardwareMap.get(DcMotorEx.class, "motorShooter");
-        motorShooter.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.FORWARD);
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorShooter.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(pidfCoefficients));
         //motorShooter.setPower(0);
 
         motorShooterTop = hardwareMap.get(DcMotorEx.class, "motorShooterTop");
-        motorShooterTop.setDirection(DcMotor.Direction.FORWARD);
+        motorShooterTop.setDirection(DcMotor.Direction.REVERSE);
         motorShooterTop.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorShooterTop.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(pidfCoefficients));
         //motorShooterTop.setPower(0);
@@ -80,11 +81,13 @@ public class FlywheelTuner extends OpMode {
         motorShooter.setVelocity(curTargetVel);
         motorShooterTop.setVelocity(curTargetVel);
 
-        double curVel = motorShooter.getVelocity();
-        double error = curTargetVel -   curVel;
+        double curVel1 = motorShooterTop.getVelocity();
+        double curVel2 = motorShooter.getVelocity();
+        double error = curTargetVel -   curVel1;
 
         telemetry.addData("Target Vel", curTargetVel);
-        telemetry.addData("Cur Vel","%.2f",curVel);
+        telemetry.addData("Cur Vel Top","%.2f",curVel1);
+        telemetry.addData("Cur Vel ","%.2f",curVel2);
         telemetry.addData("Error","%.2f",error);
         telemetry.addLine("------------------------");
         telemetry.addData("Tuning P","%.4f (D-Pad U/D)", P);

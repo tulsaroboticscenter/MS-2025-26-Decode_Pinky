@@ -169,14 +169,14 @@ public class HWProfile2 {
         motorShooter.setDirection(DcMotor.Direction.FORWARD);
         motorShooter.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooter.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        motorShooter.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//big shooter (210, 0.0, 0.0, 14.3)
+        motorShooter.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(240, 0.0, 0.0, 17.5));//big shooter (210, 0.0, 0.0, 14.3)
         motorShooter.setPower(0);
 
         motorShooterTop = ahwMap.get(DcMotorEx.class, "motorShooterTop");
         motorShooterTop.setDirection(DcMotor.Direction.REVERSE);
         motorShooterTop.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorShooterTop.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        motorShooterTop.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(210, 0.0, 0.0, 14.3));//(800, 0.0, 0.0, 1490))
+        motorShooterTop.setPIDFCoefficients(DcMotorEx.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(240, 0.0, 0.0, 17.5));//(800, 0.0, 0.0, 1490))
         motorShooterTop.setPower(0);
         //motorShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
