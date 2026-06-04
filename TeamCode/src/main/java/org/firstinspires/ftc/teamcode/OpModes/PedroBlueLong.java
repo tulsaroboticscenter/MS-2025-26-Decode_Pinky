@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Hardware.MSParams;
 import org.firstinspires.ftc.teamcode.Libs.MSMechOps;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous(name = "BlueLong", group = "Examples")
+//@Autonomous(name = "BlueLong", group = "Examples")
 public class PedroBlueLong extends LinearOpMode {
 
     private HWProfile2 robot = new HWProfile2();

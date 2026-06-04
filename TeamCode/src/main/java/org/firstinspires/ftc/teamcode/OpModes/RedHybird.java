@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Hardware.MSParams;
 import org.firstinspires.ftc.teamcode.Libs.MSMechOps;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous(name = "RedHybrid", group = "Examples")
+//@Autonomous(name = "RedHybrid", group = "Examples")
 public class RedHybird extends LinearOpMode {
 
     private HWProfile2 robot = new HWProfile2();

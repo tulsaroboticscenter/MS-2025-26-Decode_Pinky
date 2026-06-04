@@ -57,7 +57,7 @@ import org.firstinspires.ftc.teamcode.Libs.MSMechOps;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="LM #1 Auto - Blue", group="Robot")
+//@Autonomous(name="LM #1 Auto - Blue", group="Robot")
 //@Disabled
 public class AutoLM1Blue extends LinearOpMode {
 

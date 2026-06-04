@@ -35,7 +35,7 @@ public class PedroBlueTower extends LinearOpMode {
     private boolean NoGateClear;
     private int pathState;
 
-    private final Pose startPose = new Pose(28.1, 132.1, Math.toRadians(143)); // Start Pose of our robot.
+    private final Pose startPose = new Pose(26.2, 129.6, Math.toRadians(143)); // Start Pose of our robot.
     private final Pose scorePose = new Pose(58, 88, Math.toRadians(143));// Scoring Pose of our robot. It is facing the goal at a 135 degree angle.
     private final Pose PrescorePose = new Pose(39.3, 90.2, Math.toRadians(130)); // Scoring Pose of our robot. It is facing the goal at a 135 degree angle.
     private final Pose pickup1PoseEnd = new Pose(20, 82.5, Math.toRadians(180)); // Highest (First Set) of Artifacts from the Spike Mark.
