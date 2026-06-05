@@ -8,9 +8,9 @@ public class MSParams {
     public final double STRAFE_FACTOR = 0.9;
 
     //Flipper commands
-    public final double flipper_clear = .6;
+    public final double flipper_clear = .71;
     public final double flipper_stop = 0.3;//Started at .4 tried .3
-    public final double flipper_rev = 0.15;
+    public final double flipper_rev = flipper_clear;
     public final double LIFTZero = 0.3;
     public final double LIFTlifting = 0.75;
     public final double Far_Shooter = 1;
@@ -23,9 +23,9 @@ public class MSParams {
     public final double Feeder_OFF = 0;
     public final double ShootAutoStart = 1660;
     public final double ShootAutoLong = 1610;
-    public final double ShootAutoTower = 1300;
+    public final double ShootAutoTower = 1460;
     public final double ShootTeleNear = 1520;
-    public final double ShootTeleFar = 1820;
+    public final double ShootTeleFar = 1580;
     public final double ShootStart = 1720;
     public final double TriggerPulse = 50;
     public final double TriggerVel = 1600;

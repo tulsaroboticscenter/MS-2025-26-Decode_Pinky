@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Hardware.MSParams;
 import org.firstinspires.ftc.teamcode.Libs.MSMechOps;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous(name = "Art3TowerRED", group = "Examples")
+//@Autonomous(name = "Art3TowerRED", group = "Examples")
 public class Art3TowerP extends LinearOpMode {
 
     private HWProfile2 robot = new HWProfile2();

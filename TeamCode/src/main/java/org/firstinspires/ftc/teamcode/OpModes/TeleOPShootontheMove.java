@@ -550,10 +550,10 @@ public class TeleOPShootontheMove extends LinearOpMode {
         double targetVel =1;
 
         if(currenty>48){
-            targetVel = ((dist* 1.6351) + 1417.5) - 100; //near slope added offset of 100 until new curve
+            targetVel = ((dist*dist*0.0288)-(dist* 3.7895) + 1504.4) ; //
         }
         else {
-            targetVel =  ((dist * 1.647) + 1481) - 80;//far slope added offset of 80 until new curve
+            targetVel =  ((dist * 4.4062) + 957.26);//
         }
         return targetVel;
     }
