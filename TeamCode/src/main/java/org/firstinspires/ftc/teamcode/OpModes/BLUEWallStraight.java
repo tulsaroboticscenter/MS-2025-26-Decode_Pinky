@@ -46,8 +46,8 @@ public class BLUEWallStraight extends LinearOpMode {
     private final Pose pickup1PoseBegin = new Pose(44, 33, Math.toRadians(180)); // Lowest (Third Set) of Artifacts from the Spike Mark.
     private final Pose pickup1PoseEnd = new Pose(15, 33, Math.toRadians(180)); // Lowest (Third Set) of Artifacts from the Spike Mark.
     private final Pose endPose = new Pose(50, 25, Math.toRadians(90)); //  End Position of the Robot
-    private final Pose AA1Pose = new Pose(16, 23, Math.toRadians(-130)); // Lowest (Third Set) of Artifacts from the Spike Mark.
-    private final Pose AA1PoseScoop = new Pose(16, 10, Math.toRadians(-130));// 180 PedroRedTowerLowest (Third Set) of Artifacts from the Spike Mark.
+    private final Pose AA1Pose = new Pose(14, 17, Math.toRadians(-160)); // Lowest (Third Set) of Artifacts from the Spike Mark.
+    private final Pose AA1PoseScoop = new Pose(12, 10, Math.toRadians(-180));// 180 PedroRedTowerLowest (Third Set) of Artifacts from the Spike Mark.
     private final Pose AA1Poseround2 = new Pose(21, 10, Math.toRadians(170));// 180 PedroRedTowerLowest (Third Set) of Artifacts from the Spike Mark.
 
     //private Path scorePreload;
