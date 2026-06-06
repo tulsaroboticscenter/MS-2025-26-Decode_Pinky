@@ -89,6 +89,7 @@ public class TeleOPShootontheMove extends LinearOpMode {
     PIDFController controller = new PIDFController((new PIDFCoefficients(0.78, 0, 0.03, 0.07)));
     public double smallDiff;
     public double rpmLED;
+    public double hlockLED;
     public double VelAdj;
     public boolean isRed;
     public boolean AutoVel = true;
@@ -378,7 +379,7 @@ public class TeleOPShootontheMove extends LinearOpMode {
 
                 rx = 0.02 * -error;
                 rx = Math.min(Math.max(rx, -0.4), 0.4);
-
+                hlockLED = .333;
                 robot.RgreenLED.setState(true);
                 robot.RredLED.setState(false);
                 robot.LgreenLED.setState(true);
@@ -388,7 +389,7 @@ public class TeleOPShootontheMove extends LinearOpMode {
             } else {
 
                 rx = gamepad1.right_stick_x;
-
+                hlockLED = 0;
                 robot.RgreenLED.setState(false);
                 robot.RredLED.setState(true);
                 robot.LgreenLED.setState(false);
@@ -419,6 +420,8 @@ public class TeleOPShootontheMove extends LinearOpMode {
             shooterControl(shooterVel+VelAdj);
             //mechOps.hoodAngle(HA);
             robot.servoRPMLight.setPosition(rpmLED);
+            robot.servoHLOCKLight.setPosition(hlockLED);
+
             //artDist = robot.ArtSensor.getDistance(DistanceUnit.CM);
             //aftDist = robot.AftSensor.getDistance(DistanceUnit.CM);
 
