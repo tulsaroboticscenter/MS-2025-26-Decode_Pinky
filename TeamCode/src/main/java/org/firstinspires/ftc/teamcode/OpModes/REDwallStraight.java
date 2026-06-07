@@ -331,7 +331,6 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
             case 4:
                 if (!follower.isBusy()) {
                     mechOps.feedShooter(0);
-                    follower.followPath(scoreScore, .7, true);
                     setPathState(5);
                 }
                 break;
