@@ -21,8 +21,8 @@ public class MSParams {
     public final double Feeder_ON = 1; //was reaching 3000
     public final double Feeder_REV = -.5;
     public final double Feeder_OFF = 0;
-    public final double ShootAutoStart = 1600; //was 1661
-    public final double ShootAutoLong = 1590; // was 1610
+    public final double ShootAutoStart = 1590; //was 1661 was 1600
+    public final double ShootAutoLong = 1580; // was 1610 was1590 ignore the 1610.
     public final double ShootAutoTower = 1400;
     public final double ShootTeleNear = 1520;
     public final double ShootTeleFar = 1580;

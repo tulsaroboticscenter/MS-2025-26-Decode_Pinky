@@ -35,7 +35,7 @@ public class BLUEWallStraight extends LinearOpMode {
 
 
     private final Pose startPose = new Pose(56, 9.5, Math.toRadians(112)); // Start Pose of our robot.
-    private final Pose scorePose = new Pose(56, 18, Math.toRadians(105));// Scoring Pose of our robot. Was 115.
+    private final Pose scorePose = new Pose(56, 18, Math.toRadians(112));// Scoring Pose of our robot. Was 115.
     private final Pose PrescorePose = new Pose(54, 16, Math.toRadians(120)); // Scoring Pose of our robot. It is facing the goal at a 135 degree angle.
     private final Pose pickup3PoseEnd = new Pose(22, 80, Math.toRadians(180)); // Highest (First Set) of Artifacts from the Spike Mark.
     private final Pose pickup3PoseBegin= new Pose(44, 80, Math.toRadians(180));
