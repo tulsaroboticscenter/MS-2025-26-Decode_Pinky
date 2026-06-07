@@ -39,7 +39,7 @@ public class BLUEWallStraight extends LinearOpMode {
     private final Pose PrescorePose = new Pose(54, 16, Math.toRadians(120)); // Scoring Pose of our robot. It is facing the goal at a 135 degree angle.
     private final Pose pickup3PoseEnd = new Pose(22, 80, Math.toRadians(180)); // Highest (First Set) of Artifacts from the Spike Mark.
     private final Pose pickup3PoseBegin= new Pose(44, 80, Math.toRadians(180));
-    private final Pose pickup2PoseBegin = new Pose(46.5, 8, Math.toRadians(175));// Middle (Second Set) of Artifacts from the Spike Mark.
+    private final Pose pickup2PoseBegin = new Pose(46.5, 9, Math.toRadians(175));// Middle (Second Set) of Artifacts from the Spike Mark.
     private final Pose pickup2PoseSlide = new Pose(10, 7.5, Math.toRadians(-170));
     private final Pose pickup2PoseEnd = new Pose(10, 12, Math.toRadians(135)); // Middle (Second Set) of Artifacts from the Spike Mark.
     private final Pose pickup2PoseScore = new Pose(56, 17, Math.toRadians(106)); // Middle (Second Set) of Artifacts from the Spike Mark.
@@ -161,29 +161,24 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
 
             /* This is our grabPickup1 PathChain. We are using a single path with a BezierLine, which is a straight line. */
             AA1 = follower.pathBuilder()
-                    .addPath(new BezierCurve(startPose, new Pose(27, 22), AA1Pose))
-                    .setLinearHeadingInterpolation(startPose.getHeading(), AA1Pose.getHeading())
+                    .addPath(new BezierLine(startPose, pickup2PoseBegin))
+                    .setLinearHeadingInterpolation(startPose.getHeading(), pickup2PoseBegin.getHeading())
                     .build();
 
             AA1Scoop = follower.pathBuilder()
-                    .addPath(new BezierLine(AA1Pose, AA1PoseScoop))
-                    //.setConstantHeadingInterpolation(-45)
-                    .setLinearHeadingInterpolation(AA1Pose.getHeading(), AA1PoseScoop.getHeading())
+                    .addPath(new BezierLine(pickup2PoseBegin, pickup2PoseSlide))
+                    .setLinearHeadingInterpolation(pickup2PoseBegin.getHeading(), pickup2PoseSlide.getHeading())
                     .build();
 
             /* This is our scorePickup1 PathChain. We are using a single path with a BezierLine, which is a straight line. */
             AA1round2 = follower.pathBuilder()
-                    .addPath(new BezierLine(AA1PoseScoop, AA1Poseround2))
-                    // .setConstantHeadingInterpolation(-45)
-                    .setLinearHeadingInterpolation(AA1PoseScoop.getHeading(), AA1Poseround2.getHeading())
-
-
+                    .addPath(new BezierLine(pickup2PoseSlide, pickup2PoseEnd))
+                    .setLinearHeadingInterpolation(pickup2PoseSlide.getHeading(), pickup2PoseEnd.getHeading())
                     .build();
 
             AA1ToShoot = follower.pathBuilder()
-                    .addPath(new BezierLine(AA1Poseround2, PrescorePose))
-                    .setLinearHeadingInterpolation(AA1Poseround2.getHeading(), PrescorePose.getHeading())
-
+                    .addPath(new BezierLine(pickup2PoseEnd, PrescorePose))
+                    .setLinearHeadingInterpolation(pickup2PoseEnd.getHeading(), PrescorePose.getHeading())
                     .build();
 
 
@@ -332,7 +327,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
 
                 case 4:
                     if (!follower.isBusy()) {
-
+                        mechOps.feedShooter(0);
                         follower.followPath(scoreScore, .7, true);
                         setPathState(5);
                     }
@@ -416,8 +411,8 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
                     break;
 
                 case 10:
-                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.85) {
-
+                    if (!follower.isBusy()) {
+                        mechOps.feedShooter(0);
                         follower.followPath(scoreScore, 1, true);
                         setPathState(11);
                     }
@@ -425,7 +420,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
 
                 case 11:
                     /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.85){
+                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.9) {
                         /* Score Sample */
                         safeWaitSeconds(.01);
                         mechOps.feedShooter(params.Feeder_ON);
@@ -462,7 +457,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
 
                 case 13:
                     /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the pickup2Pose's position */
-                    if (!follower.isBusy())  {
+                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.85)  {
                         /* Grab Sample */
 
                         /* Since this is a pathChain, we can have Pedro hold the end point while we are scoring the sample */
@@ -473,15 +468,15 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
                     }
                     break;
                 case 14:
-                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.85)  {
-
+                    if (!follower.isBusy())  {
+                        mechOps.feedShooter(0);
                         follower.followPath(scoreScore, 1, true);
                         setPathState(15);
                     }
                     break;
                 case 15:
                     /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                    if (!follower.isBusy() || follower.getCurrentPath().getClosestPointTValue() > 0.85)  {
+                    if (!follower.isBusy())  {
                         /* Score Sample */
                         safeWaitSeconds(.01);
                         mechOps.feedShooter(params.Feeder_ON);
