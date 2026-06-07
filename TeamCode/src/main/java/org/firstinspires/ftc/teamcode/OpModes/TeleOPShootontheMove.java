@@ -553,10 +553,10 @@ public class TeleOPShootontheMove extends LinearOpMode {
         double targetVel =1;
 
         if(currenty>48){
-            targetVel = ((dist*dist*0.0288)-(dist* 3.7895) + 1504.4) ; //
+            targetVel = ((dist*dist*0.0288)-(dist* 3.7895) + 1504.4) -40; //-40 Begin Driver Offset
         }
         else {
-            targetVel =  ((dist * 4.4062) + 957.26);//
+            targetVel =  ((dist * 4.4062) + 957.26)-40;//-40 Begin Driver Offset
         }
         return targetVel;
     }
