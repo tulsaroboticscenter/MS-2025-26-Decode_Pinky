@@ -73,12 +73,12 @@ public class TeleOPBioBuzz extends LinearOpMode {
     public MSMechOps mechOps = new MSMechOps(robot, opMode, params);
 
     private double testPosition = 0;
-    private double shooterVel = 0;
+    private double shooterVel = params.ShootTeleNear;
     private double triggerRPM = 0;
     private double artDistance = 0;
     private double aftDistance = 0;
     public boolean AllianceBlue = true;
-    public boolean FieldC = false;
+    public boolean FieldC = true;
     public double HA = 0.6;
     public double headingGoal = 45; // Radians
     public double headingError; // Radians
