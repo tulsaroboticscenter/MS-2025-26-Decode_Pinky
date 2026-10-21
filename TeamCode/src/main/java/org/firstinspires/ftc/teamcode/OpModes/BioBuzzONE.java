@@ -43,14 +43,14 @@ public class BioBuzzONE extends LinearOpMode {
 //    private final Pose pickup3PoseEnd = new Pose(129, 36, Math.toRadians(-180)); // 180 PedroRedTowerLowest (Third Set) of Artifacts from the Spike Mark.
 //    private final Pose endPose = new Pose(94, 53, Math.toRadians(45)); // 135 End Position of the Robot
     private final Pose start = new Pose (56, 8, Math.toRadians(90));
-    private final Pose endStartPath = new Pose (8.0066, 22.5877, Math.toRadians(270));
+    private final Pose endStartPath = new Pose (9, 22.5877, Math.toRadians(270));
     private final Pose startPathControl1 = new Pose (60, 45, Math.toRadians(0));
     private final Pose pickupPathStart = new Pose (8.0066, 22.5877, Math.toRadians(270));
-    private final Pose pickupPath = new Pose (6.3344, 8.8096, Math.toRadians(270));
+    private final Pose pickupPath = new Pose (8.5, 10, Math.toRadians(270));
     private final Pose shoot2Start = new Pose (6.3344, 8.8096, Math.toRadians(270));
     private final Pose shoot2 = new Pose (55.0538, 126.3602, Math.toRadians(270));
     private final Pose shoot2Control1 = new Pose (25.356, 101.6573, Math.toRadians(0));
-    private final Pose park = new Pose (10.6209, 114.1755, Math.toRadians (15.3351));
+    private final Pose park = new Pose (10.6209, 104.1755, Math.toRadians (15.3351));
 
 
     private Path scorePreload;
@@ -152,7 +152,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
 
         /* This is our scorePickup1 PathChain. We are using a single path with a BezierLine, which is a straight line. */
         driveToShoot2 = follower.pathBuilder()
-                .addPath(new BezierLine(pickupPath, shoot2))
+                .addPath(new BezierCurve(pickupPath,shoot2Control1,shoot2))
                 .setLinearHeadingInterpolation(pickupPath.getHeading(),shoot2.getHeading())
                 .build();
 
@@ -208,7 +208,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
             case 0:
                 telemetry.addLine("calling ShooterControl");
                 telemetry.update();
-                mechOps.shooterControl(1200);
+                mechOps.shooterControl(1150);
 
                 //follower.followPath(scorePreload, true);
                 //follower.update();
@@ -226,7 +226,7 @@ scorePreload.setConstantInterpolation(startPose.getHeading()); */
                 /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
                 if (!follower.isBusy()) {
                     /* Score Preload */
-                    safeWaitSeconds(.01);
+                    safeWaitSeconds(1);
                     mechOps.feedShooter(.9);
                     mechOps.intake(1);
                     safeWaitSeconds(2.5);
